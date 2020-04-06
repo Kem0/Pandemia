@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Pandemia.WebApi.StartupExtentions;
 
 namespace Pandemia.Api
 {
@@ -26,6 +27,8 @@ namespace Pandemia.Api
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
+      services.AddExternalService();
+      services.AddSwagger();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +49,9 @@ namespace Pandemia.Api
       {
         endpoints.MapControllers();
       });
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pandemia API"));
     }
   }
 }
