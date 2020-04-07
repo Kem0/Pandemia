@@ -33,6 +33,7 @@ namespace Pandemia.Application.Commands
       catch(Exception e)
       {
         result.Errors.Add(e);
+        //must return error instead of throwing exception
         throw;
       }
 

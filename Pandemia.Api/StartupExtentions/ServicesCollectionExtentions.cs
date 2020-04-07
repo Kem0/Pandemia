@@ -4,6 +4,11 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using Pandemia.Application.Services;
 using Pandemia.Infrastructure.ExternalServices;
+using Microsoft.Extensions.Configuration;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pandemia.WebApi.StartupExtentions
 {
@@ -14,11 +19,34 @@ namespace Pandemia.WebApi.StartupExtentions
     public static IServiceCollection AddExternalService(this IServiceCollection services)
     {
       return services
-        .AddScoped<IPandemiaDataService, RetrieveRawDataFromCSSEGISandData>();
+        .AddScoped<IPandemiaDataService, CSSEGISandDataService>();
     }
 
 
-      public static IServiceCollection AddSwagger(this IServiceCollection services)
+    public static IServiceCollection ConfigureAndValidate<T>(this IServiceCollection services,
+          IConfiguration config) where T : class
+    {
+      return services
+        .Configure<T>(config.GetSection(typeof(T).Name))
+        .PostConfigure<T>(settings =>
+        {
+          ValidationContext context = new ValidationContext(settings, null, null);
+          var results = new List<ValidationResult>();
+          Validator.TryValidateObject(settings, context, results, true);
+
+          var configErrors = results.Select(e => e.ErrorMessage).ToArray();
+          if (configErrors.Any())
+          {
+            string aggrErrors = string.Join(",", configErrors);
+            var count = configErrors.Length;
+            var configType = typeof(T).Name;
+            throw new ConfigurationErrorsException(
+              $"Found {count} configuration error(s) in {configType}: {aggrErrors}");
+          }
+        });
+    }
+
+    public static IServiceCollection AddSwagger(this IServiceCollection services)
     {
       services.ConfigureSwaggerGen(
         options =>
