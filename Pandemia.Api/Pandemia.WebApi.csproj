@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Collection" Version="6.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
@@ -27,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Pandemia.Application\Pandemia.Application.csproj" />
     <ProjectReference Include="..\Pandemia.Infrastructure\Pandemia.Infrastructure.csproj" />
+    <ProjectReference Include="..\Pandemia.Persistance\Pandemia.Persistance.csproj" />
   </ItemGroup>
 
 

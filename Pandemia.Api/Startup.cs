@@ -1,10 +1,14 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pandemia.Infrastructure.ExternalServices;
+using Pandemia.Persistance;
+using Pandemia.Persistance.Mappings;
 using Pandemia.WebApi.StartupExtentions;
+using System.Reflection;
 
 namespace Pandemia.Api
 {
@@ -23,7 +27,8 @@ namespace Pandemia.Api
 
 
       services.ConfigureAndValidate<CSSEGISandDataServiceSettings>(Configuration);
-
+      services.ConfigureAndValidate<PersistenceSettings>(Configuration);
+      services.AddAutoMapper(typeof(CountryProfile).GetTypeInfo().Assembly);
       services.AddControllers();
       services.AddExternalService();
       services.AddSwagger();
