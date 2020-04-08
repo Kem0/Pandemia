@@ -9,6 +9,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using Pandemia.Application.Repositories;
+using Pandemia.Domain.ValueObjects;
+using Pandemia.Persistance.Repositories;
 
 namespace Pandemia.WebApi.StartupExtentions
 {
@@ -19,7 +22,9 @@ namespace Pandemia.WebApi.StartupExtentions
     public static IServiceCollection AddExternalService(this IServiceCollection services)
     {
       return services
-        .AddScoped<IPandemiaDataService, CSSEGISandDataService>();
+        .AddScoped<IPandemiaDataService, CSSEGISandDataService>()
+        .AddScoped<ICountryService, CountryService>()
+        .AddScoped<IRepository<Country>, CountryRepository>();
     }
 
 

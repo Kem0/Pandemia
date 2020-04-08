@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pandemia.Persistance
+namespace Pandemia.Persistance.SeedWork
 {
   public class PersistenceSettings
   {

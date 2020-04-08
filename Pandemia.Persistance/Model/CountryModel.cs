@@ -1,19 +1,18 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Pandemia.Persistance.SeedWork;
 
 namespace Pandemia.Persistance.Model
 {
+  [BsonCollection("Countries")]
  public class CountryModel
   {
     [BsonElement("name")]
     public string Name { get; set; }
     [BsonElement("isoAlpha2")]
-    public string IsoAplha2 { get; set; }
+    public string IsoAlpha2 { get; set; }
     [BsonId]
     [BsonElement("isoAlpha3")]
-    public string IsoAplha3 { get; set; }
+    public string IsoAlpha3 { get; set; }
     [BsonElement("region")]
     public string Region { get; set; }
     [BsonElement("subRegion")]

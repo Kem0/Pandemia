@@ -8,4 +8,8 @@
     <Folder Include="Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pandemia.Domain\Pandemia.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

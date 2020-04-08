@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Pandemia.Persistance.Mappings
 {
-  public class CountryProfile : Profile
+  public class CountryModelProfile : Profile
   {
-    public CountryProfile()
+    public CountryModelProfile()
     {
       CreateMap<Country, CountryModel>()
       .ReverseMap();

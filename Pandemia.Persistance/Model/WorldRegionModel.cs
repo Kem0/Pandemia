@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Pandemia.Persistance.SeedWork;
 
 namespace Pandemia.Persistance.Model
 {
+  [BsonCollection("WorldRegions")]
   public class WorldRegionModel
   {
   }

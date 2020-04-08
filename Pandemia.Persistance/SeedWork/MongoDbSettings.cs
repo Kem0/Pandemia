@@ -1,4 +1,4 @@
-﻿namespace Pandemia.Persistance
+﻿namespace Pandemia.Persistance.SeedWork
 {
   public class MongoDbSettings
   {

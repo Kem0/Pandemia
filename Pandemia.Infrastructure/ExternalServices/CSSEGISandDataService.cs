@@ -12,13 +12,9 @@ namespace Pandemia.Infrastructure.ExternalServices
   {
 
     private readonly HttpClient _httpClient;
-    private readonly IOptions<CSSEGISandDataServiceSettings> _cssegiRawDataSettings;
-
     public CSSEGISandDataService(IOptions<CSSEGISandDataServiceSettings> cssegiRawDataSettings)
     {
-      _cssegiRawDataSettings = cssegiRawDataSettings;
       _httpClient = new HttpClient();
-      //TODO: Configuration injection
       _httpClient.BaseAddress = new Uri($"{cssegiRawDataSettings.Value.BaseUrl}/{cssegiRawDataSettings.Value.DataPath}"); 
     }
     public async void RetrieveRawDataAsync(DateTime fromDate, DateTime toDate)
